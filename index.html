@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LiveNotes — Дневник</title>
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <span class="logo">Дневник</span>
+      <span id="status"></span>
+    </header>
+    <main>
+      <section id="diary">
+        <div id="diary-nav"></div>
+        <div id="diary-list"><div class="hint">Загрузка…</div></div>
+        <div class="diary-toolbar">
+          <button id="new-page-btn" title="Добавить страницу">+ Новая страница</button>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
