@@ -178,10 +178,20 @@ async function loadPages() {
 
 async function createPage() {
   const now = Date.now();
+  // createdAt привязан к выбранной в day-nav дате (selectedDayKey), время — текущее.
+  // Если выбран сегодняшний день — используем now как есть.
+  let createdAt = now;
+  if (selectedDayKey !== todayKey()) {
+    const [y, m, d] = selectedDayKey.split('-').map(Number);
+    const t = new Date();
+    createdAt = new Date(
+      y, m - 1, d,
+      t.getHours(), t.getMinutes(), t.getSeconds(), t.getMilliseconds(),
+    ).getTime();
+  }
   const id = randomUUID();
   try {
-    await api.createPage({ id, content: '', createdAt: now, updatedAt: now });
-    selectedDayKey = todayKey();
+    await api.createPage({ id, content: '', createdAt, updatedAt: now });
     await loadPages();
     const card = document.querySelector(`.page-card[data-id="${id}"] textarea`);
     if (card) card.focus();
